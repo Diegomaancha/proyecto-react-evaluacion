@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Todos from "../pages/Todos";
 import Admin from "../pages/Admin";
+import AdminUsers from "../pages/AdminUsers";
 import NotFound from "../pages/NotFound";
 
 export default function AppRouter() {
@@ -23,6 +24,7 @@ export default function AppRouter() {
 
                 <Route element={<RoleRoute role="admin" />}>
                     <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin/users" element={<AdminUsers />} />
                 </Route>
             </Route>
 

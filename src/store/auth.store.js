@@ -2,6 +2,9 @@ import { create } from "zustand";
 
 const STORAGE_KEY = "dj_auth";
 
+// ✅ Admins permitidos (DummyJSON login funciona con emilys)
+const ADMIN_USERS = ["emilys"];
+
 function load() {
     try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null;
@@ -13,18 +16,20 @@ function load() {
 export const useAuthStore = create((set, get) => {
     const saved = load();
 
-    const savedToken = saved?.token || saved?.accessToken || null;
+    const savedToken = saved?.token || null;
     const savedUser = saved?.user || null;
 
     return {
         token: savedToken,
         user: savedUser,
-        isAdmin: savedUser?.username === "kminchelle",
+        isAdmin: savedUser ? ADMIN_USERS.includes(savedUser.username) : false,
 
         setSession: ({ token, user }) => {
-            const isAdmin = user?.username === "kminchelle";
+            const isAdmin = user ? ADMIN_USERS.includes(user.username) : false;
+
             const next = { token, user };
             localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+
             set({ token, user, isAdmin });
         },
 
