@@ -1,3 +1,6 @@
+//Username: michaelw
+//Password: michaelwpass
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -72,7 +75,7 @@ export default function Login() {
 
             setSession({ token, user });
             toast.success("Login correcto");
-            navigate("/app", { replace: true });
+            navigate("/dashboard", { replace: true });
         },
         onError: (e) => toast.error(e.message),
     });

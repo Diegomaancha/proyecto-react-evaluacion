@@ -13,18 +13,18 @@ import NotFound from "../pages/NotFound";
 export default function AppRouter() {
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="/app" replace />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login" element={<Login />} />
 
             <Route element={<ProtectedRoute />}>
                 <Route element={<AppLayout />}>
-                    <Route path="/app" element={<Dashboard />} />
-                    <Route path="/app/todos" element={<Todos />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/tareas" element={<Todos />} />
                 </Route>
 
                 <Route element={<RoleRoute role="admin" />}>
                     <Route path="/admin" element={<Admin />} />
-                    <Route path="/admin/users" element={<AdminUsers />} />
+                    <Route path="/admin/usuarios" element={<AdminUsers />} />
                 </Route>
             </Route>
 
